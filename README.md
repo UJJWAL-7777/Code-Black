@@ -7,7 +7,7 @@ It provides an interactive coding environment similar to LeetCode or HackerRank 
 
 ## 🚀 Features
 
-### 🧩 Online Code Execution using Judge0 API
+### 🧩 Online Code Execution Platform (using JUDGE 0 API)
 - Supports multiple programming languages (C++, Java, JS)  --->more to be added later
 - Real-time output and error handling
 
