@@ -64,6 +64,8 @@ It provides an interactive coding environment similar to LeetCode or HackerRank 
 
 This project uses environment variables for sensitive data.  
 Do **not** commit `.env` files.
+(eg -> JWT_KEY.....REDIS_PASS....CLODINARY_KEYS.....GEMINI_API_KEY.....JUDGE0_KEY)
+
 ---
 
 ## 🧑‍💻 Author
