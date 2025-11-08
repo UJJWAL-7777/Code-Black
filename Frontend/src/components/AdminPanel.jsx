@@ -99,7 +99,7 @@ function AdminPanel() {
           <div className="space-y-4">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Title</span>
+                <span className="label-text p-5">Title</span>
               </label>
               <input
                 {...register('title')}
@@ -112,7 +112,7 @@ function AdminPanel() {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Description</span>
+                <span className="label-text p-5">Description</span>
               </label>
               <textarea
                 {...register('description')}
@@ -126,7 +126,7 @@ function AdminPanel() {
             <div className="flex gap-4">
               <div className="form-control w-1/2">
                 <label className="label">
-                  <span className="label-text">Difficulty</span>
+                  <span className="label-text p-5">Difficulty</span>
                 </label>
                 <select
                   {...register('difficulty')}
@@ -140,7 +140,7 @@ function AdminPanel() {
 
               <div className="form-control w-1/2">
                 <label className="label">
-                  <span className="label-text">Tag</span>
+                  <span className="label-text p-5">Tag</span>
                 </label>
                 <select
                   {...register('tags')}
