@@ -66,6 +66,21 @@ This project uses environment variables for sensitive data.
 Do **not** commit `.env` files.
 (eg -> JWT_KEY.....REDIS_PASS....CLODINARY_KEYS.....GEMINI_API_KEY.....JUDGE0_KEY)
 
+
+### 🔧 Redis Configuration
+The Redis client is configured using environment variables for security:
+
+**This is for redis.js in config folder(use .env for all these parts)**
+**
+username: process.env.REDIS_USERNAME,
+password: process.env.REDIS_PASS,
+socket: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT
+}
+**
+
+
 ---
 
 ## 🧑‍💻 Author
