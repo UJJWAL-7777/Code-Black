@@ -36,7 +36,7 @@ It provides an interactive coding environment similar to LeetCode or HackerRank 
 - React.js  
 - Monaco Editor  
 - Axios  
-- TailwindCSS / ShadCN (if used)
+- TailwindCSS / Daisy UI
 
 ### ⚙️ Backend
 - Node.js / Express.js  
