@@ -6,6 +6,33 @@
     import { loginUser } from "../authSlice";
     import { useEffect, useState } from 'react';
 
+    // --- Theme Toggle Component (Internal for simplicity) ---
+    const ThemeToggle = () => {
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light");
+    };
+
+    return (
+        <button 
+        onClick={toggleTheme} 
+        className="btn btn-circle btn-ghost absolute top-4 right-4 z-50 transition-all duration-300 hover:rotate-12"
+        aria-label="Toggle Theme"
+        >
+        {theme === "light" ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        )}
+        </button>
+    );
+    };
 
     const loginSchema = z.object({
     emailId: z.string().email("Invalid Email"),
@@ -21,7 +48,7 @@
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: zodResolver(loginSchema) }); // Using renamed schema
+    } = useForm({ resolver: zodResolver(loginSchema) }); 
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -34,42 +61,56 @@
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-base-200"> {/* Added bg for contrast */}
-        <div className="card w-96 bg-base-100 shadow-xl">
-            <div className="card-body">
-            <h2 className="card-title justify-center text-3xl mb-6">CodeBlack</h2> {/* Added mb-6 */}
+        <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-base-200 via-base-300 to-base-100 relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
 
+        <ThemeToggle />
+
+        {/* Animation wrapper */}
+        <div className="card w-full max-w-md bg-base-100/90 backdrop-blur-sm shadow-2xl border border-base-200 animate-[fadeInUp_0.5s_ease-out]">
+            <div className="card-body px-8 py-10">
             
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-control"> {/* Removed mt-4 from first form-control for tighter spacing to title or global error */}
-                <label className="label"> {/* Removed mb-1, default spacing should be fine */}
-                    <span className="label-text">Email</span>
+            <div className="text-center mb-6">
+                <h2 className="text-4xl font-black tracking-tight text-base-content">
+                Code<span className="text-primary">Black</span>
+                </h2>
+                <p className="text-sm text-base-content/60 mt-2">Welcome back, login to continue.</p>
+            </div>
+            
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <div className="form-control">
+                <label className="label pl-1">
+                    <span className="label-text font-semibold">Email</span>
                 </label>
                 <input
                     type="email"
                     placeholder="john@example.com"
-                    className={`input input-bordered w-full ${errors.emailId ? 'input-error' : ''}`} 
+                    className={`input input-bordered w-full bg-base-200/50 focus:bg-base-100 transition-all ${errors.emailId ? 'input-error' : 'focus:border-primary'}`} 
                     {...register('emailId')}
                 />
                 {errors.emailId && (
-                    <span className="text-error text-sm mt-1">{errors.emailId.message}</span>
+                    <span className="text-error text-xs mt-2 ml-1 flex items-center gap-1">
+                    ⚠ {errors.emailId.message}
+                    </span>
                 )}
                 </div>
 
-                <div className="form-control mt-4">
-                <label className="label">
-                    <span className="label-text">Password</span>
+                <div className="form-control">
+                <label className="label pl-1">
+                    <span className="label-text font-semibold">Password</span>
                 </label>
                 <div className="relative">
                     <input
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
-                    className={`input input-bordered w-full pr-10 ${errors.password ? 'input-error' : ''}`}
+                    className={`input input-bordered w-full pr-12 bg-base-200/50 focus:bg-base-100 transition-all ${errors.password ? 'input-error' : 'focus:border-primary'}`}
                     {...register('password')}
                     />
                     <button
                     type="button"
-                    className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    className="absolute top-0 right-0 h-full px-4 text-base-content/50 hover:text-primary transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
                     aria-label={showPassword ? "Hide password" : "Show password"}
                     >
@@ -86,35 +127,46 @@
                     </button>
                 </div>
                 {errors.password && (
-                    <span className="text-error text-sm mt-1">{errors.password.message}</span>
+                    <span className="text-error text-xs mt-2 ml-1 flex items-center gap-1">
+                    ⚠ {errors.password.message}
+                    </span>
                 )}
                 </div>
 
-                <div className="form-control mt-8 flex justify-center">
+                <div className="form-control mt-8">
                 <button
                     type="submit"
-                    className={`btn btn-primary ${loading ? 'loading btn-disabled' : ''}`} // Added btn-disabled for better UX with loading
+                    className={`btn btn-primary w-full shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 ${loading ? 'loading btn-disabled' : ''}`} 
                     disabled={loading}
                 >
                     {loading ? (
                     <>
-                        <span className="loading loading-spinner"></span>
+                        <span className="loading loading-spinner loading-sm"></span>
                         Logging in...
                     </>
                     ) : 'Login'}
                 </button>
                 </div>
             </form>
-            <div className="text-center mt-6">
-                <span className="text-sm">
-                Don't have an account?{' '} {/* Adjusted text slightly */}
-                <NavLink to="/signup" className="link link-primary">
+            
+            <div className="text-center mt-8">
+                <span className="text-sm text-base-content/70">
+                Don't have an account?{' '} 
+                <NavLink to="/signup" className="link link-primary font-bold no-underline hover:underline transition-all">
                     Sign Up
                 </NavLink>
                 </span>
             </div>
             </div>
         </div>
+        
+        {/* Inline Style for Custom Animation */}
+        <style>{`
+            @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+            }
+        `}</style>
         </div>
     );
     }
