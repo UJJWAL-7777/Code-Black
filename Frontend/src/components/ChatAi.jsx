@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axiosClient from "../utils/axiosClient";
 import { Send } from 'lucide-react';
+import ReactMarkdown from "react-markdown";
 
 function ChatAi({problem}) {
     const [messages, setMessages] = useState([
@@ -16,34 +17,77 @@ function ChatAi({problem}) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    const onSubmit = async (data) => {
+    // const onSubmit = async (data) => {
         
-        setMessages(prev => [...prev, { role: 'user', parts:[{text: data.message}] }]);
-        reset();
+    //     setMessages(prev => [...prev, { role: 'user', parts:[{text: data.message}] }]);
+    //     reset();
 
-        try {
+    //     try {
             
-            const response = await axiosClient.post("/ai/chat", {
-                messages:messages,
-                title:problem.title,
-                description:problem.description,
-                testCases: problem.visibleTestCases,
-                startCode:problem.startCode
-            });
+    //         const response = await axiosClient.post("/ai/chat", {
+    //             messages:messages,
+    //             title:problem.title,
+    //             description:problem.description,
+    //             testCases: problem.visibleTestCases,
+    //             startCode:problem.startCode
+    //         });
 
            
-            setMessages(prev => [...prev, { 
-                role: 'model', 
-                parts:[{text: response.data.message}] 
-            }]);
-        } catch (error) {
-            console.error("API Error:", error);
-            setMessages(prev => [...prev, { 
-                role: 'model', 
-                parts:[{text: "Error from AI Chatbot"}]
-            }]);
-        }
-    };
+    //         setMessages(prev => [...prev, { 
+    //             role: 'model', 
+    //             parts:[{text: response.data.message}] 
+    //         }]);
+    //     } catch (error) {
+    //         console.error("API Error:", error);
+    //         setMessages(prev => [...prev, { 
+    //             role: 'model', 
+    //             parts:[{text: "Error from AI Chatbot"}]
+    //         }]);
+    //     }
+    // };
+
+                        const onSubmit = async (data) => {
+
+                        const newUserMessage = {
+                            role: 'user',
+                            parts: [{ text: data.message }]
+                        };
+
+                        const updatedMessages = [...messages, newUserMessage];
+
+                        setMessages(updatedMessages);
+                        reset();
+
+                        try {
+
+                            const response = await axiosClient.post("/ai/chat", {
+                                messages: updatedMessages,  // ✅ SEND UPDATED ARRAY
+                                title: problem.title,
+                                description: problem.description,
+                                testCases: problem.visibleTestCases,
+                                startCode: problem.startCode
+                            });
+
+                            setMessages(prev => [
+                                ...prev,
+                                {
+                                    role: 'model',
+                                    parts: [{ text: response.data.message }]
+                                }
+                            ]);
+
+                        } catch (error) {
+                            console.error("API Error:", error);
+
+                            setMessages(prev => [
+                                ...prev,
+                                {
+                                    role: 'model',
+                                    parts: [{ text: "Error from AI Chatbot" }]
+                                }
+                            ]);
+                        }
+                    };
 
     return (
         <div className="flex flex-col h-screen max-h-[80vh] min-h-[500px]">
@@ -53,8 +97,13 @@ function ChatAi({problem}) {
                         key={index} 
                         className={`chat ${msg.role === "user" ? "chat-end" : "chat-start"}`}
                     >
-                        <div className="chat-bubble bg-base-200 text-base-content">
+                        {/* <div className="chat-bubble bg-base-200 text-base-content">
                             {msg.parts[0].text}
+                        </div> */}
+                        <div className="chat-bubble bg-base-200 text-base-content whitespace-pre-wrap">
+                            <ReactMarkdown>
+                                {msg.parts[0].text}
+                            </ReactMarkdown>
                         </div>
                     </div>
                 ))}
