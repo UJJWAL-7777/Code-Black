@@ -70,19 +70,6 @@ Do **not** commit `.env` files.
 ### 🔧 Redis Configuration
 The Redis client is configured using environment variables for security:
 
-**This is for redis.js in config folder(use .env for all these parts)**
-**
-username: process.env.REDIS_USERNAME,
-password: process.env.REDIS_PASS,
-socket: {
-    host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT
-}
-...and more.. .env fields...
-**
-
-
----
 
 ## 🧑‍💻 Author
 
