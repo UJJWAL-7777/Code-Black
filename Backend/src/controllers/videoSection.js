@@ -107,7 +107,7 @@
         secureUrl,
         duration: cloudinaryResource.duration || duration,
         thumbnailUrl
-        });
+        });  
 
 
         res.status(201).json({

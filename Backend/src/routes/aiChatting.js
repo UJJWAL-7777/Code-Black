@@ -1,7 +1,7 @@
 const express = require('express');
 const aiRouter =  express.Router();
 const userMiddleware = require("../middleware/userMiddleware");
-const solveDoubt = require('../controllers/solveDoubt');
+const solveDoubt = require('../controllers/solveDoubt');              //NO NEED OF THIS----------------
 
 aiRouter.post('/chat', userMiddleware, solveDoubt);
 

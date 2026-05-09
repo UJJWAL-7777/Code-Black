@@ -5,7 +5,7 @@
     import { logoutUser } from '../authSlice';
 
     // --- Assets ---
-    // Replace with your actual logo URL
+    //logo URL
     const LOGO_URL = "https://cdn-icons-png.flaticon.com/512/1005/1005141.png"; 
 
     // --- Theme Toggle Component ---
