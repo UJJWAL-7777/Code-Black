@@ -19,10 +19,7 @@ const cors = require('cors')
 // }))
 
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'https://code-black-six.vercel.app'
-    ],
+    origin: 'https://code-black-six.vercel.app',
     credentials: true
 }))
 
