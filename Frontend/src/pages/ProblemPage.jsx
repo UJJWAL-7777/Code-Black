@@ -196,8 +196,12 @@
         <header className="h-14 min-h-[3.5rem] bg-base-200/50 border-b border-base-300 flex items-center justify-between px-4 sticky top-0 z-50 backdrop-blur-sm">
             <div className="flex items-center gap-3">
                 {/* Logo Image */}
-                <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center p-1">
+                {/* <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center p-1">
                     <img src="../../public/logo1.png" alt="Logo" className="w-full h-full object-contain" />
+                </div> */}
+
+                <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center p-1">
+                    <img src="/logo1.png" alt="Logo" className="w-full h-full object-contain" />
                 </div>
                 <span className="text-lg font-bold tracking-tight">Code<span className="text-primary">Black</span></span>
                 
