@@ -8,7 +8,7 @@ const solveDoubt = async(req , res)=>{
 
         const {messages,title,description,testCases,startCode} = req.body;
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });
-       
+
         async function main() {
         const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",

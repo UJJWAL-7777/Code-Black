@@ -34,7 +34,7 @@ const AdminDelete = () => {
       setError('Failed to delete problem');
       console.error(err);
     }
-  };
+  };  
 
 
   if (loading) {

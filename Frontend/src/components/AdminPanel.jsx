@@ -10,6 +10,7 @@ const problemSchema = z.object({
   description: z.string().min(1, 'Description is required'),
   difficulty: z.enum(['easy', 'medium', 'hard']),
   tags: z.enum(['array', 'linkedList', 'graph', 'dp']),
+
   visibleTestCases: z.array(
     z.object({
       input: z.string().min(1, 'Input is required'),
@@ -17,18 +18,21 @@ const problemSchema = z.object({
       explanation: z.string().min(1, 'Explanation is required')
     })
   ).min(1, 'At least one visible test case required'),
+
   hiddenTestCases: z.array(
     z.object({
       input: z.string().min(1, 'Input is required'),
       output: z.string().min(1, 'Output is required')
     })
   ).min(1, 'At least one hidden test case required'),
+
   startCode: z.array(
     z.object({
       language: z.enum(['C++', 'Java', 'JavaScript']),
       initialCode: z.string().min(1, 'Initial code is required')
     })
   ).length(3, 'All three languages required'),
+  
   referenceSolution: z.array(
     z.object({
       language: z.enum(['C++', 'Java', 'JavaScript']),

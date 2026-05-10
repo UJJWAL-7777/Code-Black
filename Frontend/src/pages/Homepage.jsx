@@ -102,7 +102,8 @@
             <div className="flex-1 flex items-center gap-3">
             <NavLink to="/" className="flex items-center gap-2 group">
                 <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center p-1 group-hover:scale-110 transition-transform">
-                    <img src="../../public/logo1.png" alt="Logo" className="w-full h-full object-contain" />
+                    {/* <img src="../../public/logo1.png" alt="Logo" className="w-full h-full object-contain" /> */}
+                    <img src="/logo1.png" alt="Logo" className="w-full h-full object-contain" />
                 </div>
                 <span className="text-xl font-bold tracking-tight">Code<span className="text-primary">Black</span></span>
             </NavLink>

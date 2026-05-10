@@ -6,9 +6,9 @@
 
 
     cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
     });
 
     const generateUploadSignature = async (req, res) => {
@@ -130,7 +130,7 @@
     const deleteVideo = async (req, res) => {
     try {
         const { problemId } = req.params;
-        const userId = req.result._id;
+        const userId = req.result._id; 
 
         const video = await SolutionVideo.findOneAndDelete({problemId:problemId});
         
