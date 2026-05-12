@@ -7,6 +7,8 @@
     import ChatAi from '../components/ChatAi';
     import Editorial from '../components/Editorial';
 
+    import { useSelector } from 'react-redux';
+
     // --- Assets ---
     // You can replace this URL with your actual local image path
     const LOGO_URL = "https://cdn-icons-png.flaticon.com/512/1005/1005141.png"; 
@@ -58,6 +60,13 @@
     const [activeRightTab, setActiveRightTab] = useState('code');
     const editorRef = useRef(null);
     let { problemId } = useParams();
+
+    // ADD HERE
+    const { user } =
+    useSelector(
+        (state) => state.auth
+    );
+    
 
     const { handleSubmit } = useForm();
 
