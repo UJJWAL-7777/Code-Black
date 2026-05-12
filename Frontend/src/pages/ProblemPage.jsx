@@ -220,7 +220,7 @@
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar placeholder">
                         <div className="bg-neutral text-neutral-content rounded-full w-8">
-                        <span className="text-xs p-3">U</span>
+                        <span className="text-xs p-3">{user?.firstName?.charAt(0)?.toUpperCase()}</span>
                         </div>
                     </div>
                 </div>

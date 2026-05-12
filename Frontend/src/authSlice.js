@@ -5,8 +5,8 @@
     'auth/register',
     async (userData, { rejectWithValue }) => {
         try {
-        const response =  await axiosClient.post('/user/register', userData);
-        return response.data.user;
+            const response =  await axiosClient.post('/user/register', userData);
+            return response.data.user;
         } catch (error) {
         return rejectWithValue(error);
         }
@@ -16,7 +16,7 @@
 
     export const loginUser = createAsyncThunk(
     'auth/login',
-    async (credentials, { rejectWithValue }) => {
+    async (credentials, { rejectWithValue }) => { 
         try {
         const response = await axiosClient.post('/user/login', credentials);
         return response.data.user;
@@ -61,6 +61,7 @@
         loading: false,
         error: null
     },
+    
     reducers: {
     },
     extraReducers: (builder) => {

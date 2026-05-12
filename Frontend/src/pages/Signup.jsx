@@ -35,9 +35,9 @@
     };
 
     const signupSchema = z.object({
-    firstName: z.string().min(3, "Minimum character should be 3"),
-    emailId: z.string().email("Invalid Email"),
-    password: z.string().min(8, "Password is too weak")
+        firstName: z.string().min(3, "Minimum character should be 3"),
+        emailId: z.string().email("Invalid Email"),
+        password: z.string().min(8, "Password is too weak")
     });
 
     function Signup() {
@@ -50,10 +50,10 @@
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: zodResolver(signupSchema) });
+    } = useForm({ resolver: zodResolver(signupSchema) });  
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated) { 
         navigate('/');
         }
     }, [isAuthenticated, navigate]);
