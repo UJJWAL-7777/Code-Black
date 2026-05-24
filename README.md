@@ -57,7 +57,8 @@ It provides an interactive coding environment similar to LeetCode or HackerRank 
 - Add **user comments and ratings** for each problem  
 - Implement a **leaderboard and achievement system**  
 - Deploy the platform for **live access** via cloud hosting  
-- Make the **frontend fully responsive** for mobile and tablet users  
+- Make the **frontend fully responsive** for mobile and tablet users
+- Make a customizable contest room 
 ---
 
 ## ⚙️ Environment Setup
